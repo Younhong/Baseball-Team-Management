@@ -13,8 +13,8 @@ void display_player_data(Record records[]) {
   printf("Name: %s\n", records->name);
   printf("Position: %s\n", records->position);
   printf("Age: %d\n", records->age);
-  printf("Height: %d\n", records->height);
-  printf("Weight: %d\n", records->weight);
+  printf("Height: %.1f\n", records->height);
+  printf("Weight: %.1f\n", records->weight);
   printf("Year of Join: %d\n", records->group_of_year);
   printf("Uniform Number: %d\n", records->uniform_number);
 
@@ -96,9 +96,9 @@ int add_file_record(Record records[]) {
     fscanf(f, "%s", temp);
     fscanf(f, "%d", &records->age);
     fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->height);
+    fscanf(f, "%f", &records->height);
     fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->weight);
+    fscanf(f, "%f", &records->weight);
     fscanf(f, "%s", temp);
     fscanf(f, "%d", &records->group_of_year);
     fscanf(f, "%s", temp);
@@ -136,9 +136,9 @@ void add_record(Record records[]){
     printf("Age: ");
     scanf("%d", &records->age);
     printf("Height: ");
-    scanf("%d", &records->height);
+    scanf("%f", &records->height);
     printf("Weight: ");
-    scanf("%d", &records->weight);
+    scanf("%f", &records->weight);
     printf("Year of Join: ");
     scanf("%d", &records->group_of_year);
     printf("Uniform Number: ");
@@ -338,9 +338,9 @@ void update_record(Record records[]) {
           printf("Age: ");
           scanf("%d", &records->age);
           printf("Height: ");
-          scanf("%d", &records->height);
+          scanf("%f", &records->height);
           printf("Weight: ");
-          scanf("%d", &records->weight);
+          scanf("%f", &records->weight);
           printf("Year of Join: ");
           scanf("%d", &records->group_of_year);
           printf("Uniform Number: ");
@@ -521,9 +521,9 @@ int load_record(Record records[]) {
     fscanf(f, "%s", temp);
     fscanf(f, "%d", &records->age);
     fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->height);
+    fscanf(f, "%f", &records->height);
     fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->weight);
+    fscanf(f, "%f", &records->weight);
     fscanf(f, "%s", temp);
     fscanf(f, "%d", &records->group_of_year);
     fscanf(f, "%s", temp);
@@ -582,8 +582,8 @@ void save_record(Record records[]) {
     fprintf(f, "Name: %s\n", records->name);
     fprintf(f, "Position: %s\n", records->position);
     fprintf(f, "Age: %d\n", records->age);
-    fprintf(f, "Height: %d\n", records->height);
-    fprintf(f, "Weight: %d\n", records->weight);
+    fprintf(f, "Height: %.1f\n", records->height);
+    fprintf(f, "Weight: %.1f\n", records->weight);
     fprintf(f, "Year-of-Join: %d\n", records->group_of_year);
     if (i == count - 1) {
       fprintf(f, "Uniform-Number: %d", records->uniform_number);

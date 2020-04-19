@@ -7,8 +7,8 @@ typedef struct{
   char name[20];
   char position[20];
   int age;
-  int height;
-  int weight;
+  float height;
+  float weight;
   int group_of_year;
   int uniform_number;
 } Record;
