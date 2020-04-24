@@ -139,8 +139,8 @@ int add_file_record(Record records[]) {
       strcpy(records->name, status[0]);
       strcpy(records->position, status[1]);
       records->age = atoi(status[2]);
-      records->height = atoi(status[3]);
-      records->weight = atoi(status[4]);
+      records->height = atof(status[3]);
+      records->weight = atof(status[4]);
       records->group_of_year = atoi(status[5]);
       records->uniform_number = atoi(status[6]);   
 
@@ -609,8 +609,8 @@ int load_record(Record records[]) {
       strcpy(records->name, status[0]);
       strcpy(records->position, status[1]);
       records->age = atoi(status[2]);
-      records->height = atoi(status[3]);
-      records->weight = atoi(status[4]);
+      records->height = atof(status[3]);
+      records->weight = atof(status[4]);
       records->group_of_year = atoi(status[5]);
       records->uniform_number = atoi(status[6]);   
 
