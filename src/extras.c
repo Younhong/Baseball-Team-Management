@@ -65,7 +65,7 @@ void defrag_empty_record(Record records[]){
 
   // defrag by position field
   for (int i = 0; i < count; i++) {
-    if (!strcmp(records[i].position, "\"\"")) {
+    if (!strcmp(records[i].position, "*")) {
       for (int j = i; j < count; j++) {
         // do not change if either one of position or name is ""
         if (strcmp(records[j].position, "\"\"")  && strcmp(records[j].name, "\"\"")) {
@@ -79,10 +79,10 @@ void defrag_empty_record(Record records[]){
   }
   // defrag by name field
   for (int i = 0; i < count; i++) {
-    if (!strcmp(records[i].name, "\"\"")) {
+    if (!strcmp(records[i].name, "*")) {
       for (int j = i; j < count; j++) {
         // do not change if either one of position or name is ""
-        if (strcmp(records[j].name, "\"\"") && strcmp(records[j].position, "\"\"")) {
+        if (strcmp(records[j].name, "*") && strcmp(records[j].position, "*")) {
           // swap
           tempRecord = records[i];
           records[i] = records[j];

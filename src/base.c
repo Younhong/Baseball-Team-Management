@@ -261,8 +261,8 @@ void delete_record(Record records[]) {
 
         // if yes, delete field. string to "", int to 0
         if (!strcmp(yes_or_no, "y")) {
-          strcpy(records->name, "\"\"");
-          strcpy(records->position, "\"\"");
+          strcpy(records->name, "*");
+          strcpy(records->position, "*");
           records->age = 0;
           records->height = 0;
           records->weight = 0;
@@ -296,7 +296,7 @@ void delete_record(Record records[]) {
         
         // if yes, change position to ""
         if (!strcmp(yes_or_no, "y")) {
-          strcpy(records->position, "\"\"");
+          strcpy(records->position, "*");
         }
         // if no, cancel
         else if (!strcmp(yes_or_no, "n")) {
