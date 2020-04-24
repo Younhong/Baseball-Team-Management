@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "base.h"
 
@@ -69,12 +70,27 @@ void print_all_records(Record records[]){
 // - Adding file record to current data
 int add_file_record(Record records[]) {
   char filename[20];
+  char text[4] = ".txt";
+  char csv[4] = ".csv";
+  char * status[7];
+  int i = 0;
+  char temp[100];
+
+  printf("Enter 0 for text file, 1 for csv file: ");
+  scanf("%s", selected);
+
   printf("Enter file name to load: ");
   scanf("%s", filename);
 
+  if (!strcmp(selected, "0")){
+    strncat(filename, text, 4);
+  }   
+  else if (!strcmp(selected, "1")){
+    strncat(filename, csv, 4);
+  } 
+
   // open file
   FILE *f = fopen(filename, "r");
-  char temp[20];
 
   // when file name does not exist
   if (f == NULL) {
@@ -87,26 +103,54 @@ int add_file_record(Record records[]) {
     records++;
   }
 
-  // read data from file, save it to proper variable. Use temporary var to choose data I need.
-  while(!feof(f)) {
-    fscanf(f, "%s", temp);
-    fscanf(f, "%s", records->name);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%s", records->position);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->age);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%f", &records->height);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%f", &records->weight);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->group_of_year);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->uniform_number);
+  if (!strcmp(selected, "0")) {
+    // read data from file, save it to proper variable. Use temporary var to choose data I need.
+    while(!feof(f)) {
+      fscanf(f, "%s", temp);
+      fscanf(f, "%s", records->name);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%s", records->position);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%d", &records->age);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%f", &records->height);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%f", &records->weight);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%d", &records->group_of_year);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%d", &records->uniform_number);
 
-    records++;
-    count++;
+      records++;
+      count++;
+    }    
   }
+  else if (!strcmp(selected, "1")){
+    fgets(temp, sizeof(temp), f);    
+    while(!feof(f)) {
+      fgets(temp, sizeof(temp), f);
+
+      char * token = strtok(temp, ",");
+      int i = 0;
+      while (token != NULL) {
+        status[i++] = token;
+        token = strtok(NULL, ",");
+      }
+      strcpy(records->name, status[0]);
+      strcpy(records->position, status[1]);
+      records->age = atoi(status[2]);
+      records->height = atoi(status[3]);
+      records->weight = atoi(status[4]);
+      records->group_of_year = atoi(status[5]);
+      records->uniform_number = atoi(status[6]);   
+
+      records++;
+      count++;
+    }
+  }
+
+  fclose(f);
+
 
   return 0;
 }
@@ -497,12 +541,27 @@ void display_search_data(Record records[], char temp[], int index) {
 // - this function will overwrite current data, so be careful when using it.
 int load_record(Record records[]) {
   char filename[20];
+  char text[4] = ".txt";
+  char csv[4] = ".csv";
+  char * status[7];
+  int i = 0;
+  char temp[100];
+
+  printf("Enter 0 for text file, 1 for csv file: ");
+  scanf("%s", selected);
+
   printf("Enter file name to load: ");
   scanf("%s", filename);
 
+  if (!strcmp(selected, "0")){
+    strncat(filename, text, 4);
+  }   
+  else if (!strcmp(selected, "1")){
+    strncat(filename, csv, 4);
+  } 
+
   // open file
   FILE *f = fopen(filename, "r");
-  char temp[20];
 
   // if file does not exist
   if (f == NULL) {
@@ -512,28 +571,57 @@ int load_record(Record records[]) {
   // initialize record number to 0
   count = 0;
 
-  // until reading end of file, save data to record field
-  while(!feof(f)) {
-    fscanf(f, "%s", temp);
-    fscanf(f, "%s", records->name);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%s", records->position);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->age);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%f", &records->height);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%f", &records->weight);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->group_of_year);
-    fscanf(f, "%s", temp);
-    fscanf(f, "%d", &records->uniform_number);
-    display_player_data(records);
+  if (!strcmp(selected, "0")){
+    // until reading end of file, save data to record field
+    while(!feof(f)) {
+      fscanf(f, "%s", temp);
+      fscanf(f, "%s", records->name);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%s", records->position);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%d", &records->age);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%f", &records->height);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%f", &records->weight);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%d", &records->group_of_year);
+      fscanf(f, "%s", temp);
+      fscanf(f, "%d", &records->uniform_number);
 
-    printf("\n");
-    records++;
-    count++;
+      display_player_data(records);
+      printf("\n");
+      records++;
+      count++;
+    }
+  }  
+  else if (!strcmp(selected, "1")){
+    fgets(temp, sizeof(temp), f);    
+    while(!feof(f)) {
+      fgets(temp, sizeof(temp), f);
+
+      char * token = strtok(temp, ",");
+      int i = 0;
+      while (token != NULL) {
+        status[i++] = token;
+        token = strtok(NULL, ",");
+      }
+      strcpy(records->name, status[0]);
+      strcpy(records->position, status[1]);
+      records->age = atoi(status[2]);
+      records->height = atoi(status[3]);
+      records->weight = atoi(status[4]);
+      records->group_of_year = atoi(status[5]);
+      records->uniform_number = atoi(status[6]);   
+
+      display_player_data(records);
+      printf("\n"); 
+      records++;
+      count++;
+    }
   }
+
+  fclose(f);
 
   return 0;
 }
@@ -545,6 +633,7 @@ int load_record(Record records[]) {
 void save_record(Record records[]) {
   char filename[20];
   char text[4] = ".txt";
+  char csv[4] = ".csv";
   
   // if no data
   if (count == 0) {
@@ -553,7 +642,7 @@ void save_record(Record records[]) {
   }
 
   // option 1 is to save as text format(report format), option 2 is to save as any format you want.
-  printf("Choose Option(0: Save as report format(txt), 1: Save as any other type): ");
+  printf("Choose Option(0: Save as report format(txt), 1: Save as data format(csv)): ");
 
   scanf("%s", selected);
 
@@ -561,6 +650,7 @@ void save_record(Record records[]) {
   if (!strcmp(selected, "1")) {
     printf("Enter file name to save: ");
     scanf("%s", filename);
+    strncat(filename, csv, 4);
   }
   // any format
   else if (!strcmp(selected, "0")) {
@@ -577,23 +667,39 @@ void save_record(Record records[]) {
   // open file for write
   FILE *f = fopen(filename, "w");
 
-  // save all the record
-  for (int i = 0; i < count; i++) {
-    fprintf(f, "Name: %s\n", records->name);
-    fprintf(f, "Position: %s\n", records->position);
-    fprintf(f, "Age: %d\n", records->age);
-    fprintf(f, "Height: %.1f\n", records->height);
-    fprintf(f, "Weight: %.1f\n", records->weight);
-    fprintf(f, "Year-of-Join: %d\n", records->group_of_year);
-    if (i == count - 1) {
-      fprintf(f, "Uniform-Number: %d", records->uniform_number);
-    }
-    else {
-      fprintf(f, "Uniform-Number: %d\n\n", records->uniform_number);
-    }
+  if (!strcmp(selected, "0")) {
+    // save all the record
+    for (int i = 0; i < count; i++) {
+      fprintf(f, "Name: %s\n", records->name);
+      fprintf(f, "Position: %s\n", records->position);
+      fprintf(f, "Age: %d\n", records->age);
+      fprintf(f, "Height: %.1f\n", records->height);
+      fprintf(f, "Weight: %.1f\n", records->weight);
+      fprintf(f, "Year-of-Join: %d\n", records->group_of_year);
+      if (i == count - 1) {
+        fprintf(f, "Uniform-Number: %d", records->uniform_number);
+      }
+      else {
+        fprintf(f, "Uniform-Number: %d\n\n", records->uniform_number);
+      }
 
-    records++;
+      records++;
+    }  
   }
+  else if (!strcmp(selected, "1")) {
+    fprintf(f, "Name,Position,Age,Height,Weight,Year,UniformNumber\n");
+    for (int i = 0; i < count; i++) {
+      fprintf(f, "%s,%s,%d,%.1f,%.1f,%d", records->name, records->position, records->age, records->height, records->weight, records->group_of_year);
+      if (i == count - 1) {
+        fprintf(f, ",%d", records->uniform_number);
+      }
+      else {
+        fprintf(f, ",%d\n", records->uniform_number);
+      }
+      records++;
+    }
+  }
+
 
   printf("Saved Record Successfully\n");
   printf("To Quit, Enter 10 From Option Menu!\n");
