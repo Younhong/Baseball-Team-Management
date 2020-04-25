@@ -1,0 +1,95 @@
+Name: Mike
+Position: center_field
+Age: 18
+Height: 170.0
+Weight: 70.0
+Year-of-Join: 2020
+Uniform-Number: 4
+
+Name: Sungmin
+Position: shortstop
+Age: 19
+Height: 181.0
+Weight: 82.0
+Year-of-Join: 2011
+Uniform-Number: 19
+
+Name: Younhong
+Position: designated_hitter
+Age: 24
+Height: 170.0
+Weight: 68.0
+Year-of-Join: 1998
+Uniform-Number: 5
+
+Name: Kim_Jiwoo
+Position: second_basement
+Age: 24
+Height: 159.0
+Weight: 40.0
+Year-of-Join: 2020
+Uniform-Number: 7
+
+Name: Lee
+Position: trainer
+Age: 25
+Height: 158.0
+Weight: 39.0
+Year-of-Join: 2018
+Uniform-Number: 20
+
+Name: *
+Position: third_basement
+Age: 25
+Height: 160.0
+Weight: 55.0
+Year-of-Join: 2017
+Uniform-Number: 11
+
+Name: Hayeon
+Position: first_basement
+Age: -28
+Height: 160.0
+Weight: 45.0
+Year-of-Join: 2016
+Uniform-Number: 22
+
+Name: Gangho
+Position: pitcher
+Age: -29
+Height: 189.0
+Weight: 99.0
+Year-of-Join: 20150
+Uniform-Number: 43
+
+Name: Jackie
+Position: pitcher
+Age: 30
+Height: 17.0
+Weight: 88.0
+Year-of-Join: 2001
+Uniform-Number: 3
+
+Name: Daniel
+Position: catcher
+Age: 230
+Height: 15.0
+Weight: 26.0
+Year-of-Join: 2300
+Uniform-Number: 5
+
+Name: Luke
+Position: right_fielder
+Age: 25
+Height: 170.0
+Weight: 68.0
+Year-of-Join: 2020
+Uniform-Number: 1
+
+Name: Jackson
+Position: left_fielder
+Age: 25
+Height: 166.0
+Weight: 70.0
+Year-of-Join: 2015
+Uniform-Number: 3

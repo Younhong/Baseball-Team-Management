@@ -141,7 +141,7 @@ void defrag_wrong_record(Record records[]) {
       records[i].age <= 10 || records[i].age >= 50 
       || records[i].weight <= 30 || records[i].weight >= 150 
       || records[i].height <= 120 || records[i].height >= 220  
-      || records[i].group_of_year <= 2000 || records[i].group_of_year >= 2020
+      || records[i].group_of_year <= 1990 || records[i].group_of_year >= 2021
       || records[i].uniform_number <= 0 || records[i].uniform_number >= 100
     ) {
       for (int j = i; j < count; j++) {
