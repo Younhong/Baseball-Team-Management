@@ -79,6 +79,11 @@ int add_file_record(Record records[]) {
   printf("Enter 0 for text file, 1 for csv file: ");
   scanf("%s", selected);
 
+  if (strcmp(selected, "0") && strcmp(selected, "1")) {
+    printf("Not an option\n");
+    return -1;
+  }
+
   printf("Enter file name to load: ");
   scanf("%s", filename);
 
@@ -121,6 +126,7 @@ int add_file_record(Record records[]) {
       fscanf(f, "%s", temp);
       fscanf(f, "%d", &records->uniform_number);
 
+      display_player_data(records);
       records++;
       count++;
     }    
@@ -143,7 +149,8 @@ int add_file_record(Record records[]) {
       records->weight = atof(status[4]);
       records->group_of_year = atoi(status[5]);
       records->uniform_number = atoi(status[6]);   
-
+      
+      display_player_data(records);
       records++;
       count++;
     }
@@ -549,6 +556,11 @@ int load_record(Record records[]) {
 
   printf("Enter 0 for text file, 1 for csv file: ");
   scanf("%s", selected);
+
+  if (strcmp(selected, "0") && strcmp(selected, "1")) {
+    printf("Not an option\n");
+    return -1;
+  }
 
   printf("Enter file name to load: ");
   scanf("%s", filename);
