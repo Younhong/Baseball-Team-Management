@@ -49,6 +49,8 @@ void input_handler(char user_input[], Record records[]){
   else if(!strcmp(user_input, "9"))
     save_record(records);
   else if(!strcmp(user_input, "10"))
+    delete_range(records);
+  else if(!strcmp(user_input, "11"))
     printf("Terminating... bye!\n"); // Quit
   else
     printf("Unknown menu: %s \n", user_input);
@@ -70,5 +72,6 @@ void display_menu(){
     printf("7. Show Member\n");
     printf("8. Load Member\n");
     printf("9. Save Member\n");
-    printf("10. Quit\n");
+    printf("10. Delete users in the scope\n");
+    printf("11. Quit\n");
 }

@@ -336,3 +336,37 @@ void sort_data(Record records[], char field_select[20], int index) {
 
   return;
 }
+
+void delete_range(Record records[]){
+   int start = 0, end = 0;
+
+   printf("Please enter the range to delete (ex 7~10): ");
+   scanf("%d~%d",&start,&end);
+
+   char p, c;
+   printf("Enter 0 to delete player's data, 1 to delete player's position: ");
+   scanf(" %c",&p);
+
+   printf("Do you want to delete the contents? (y/n): ");
+   scanf(" %c",&c);
+   if(start >= 0 && end <= count && c == 'y' && p == '0'){
+      for(int i = start; i <= end; i++){
+          strcpy(records->name, "*");
+          strcpy(records->position, "*");
+          records->age = 0;
+          records->height = 0;
+          records->weight = 0;
+          records->group_of_year = 0;
+          records->uniform_number = 0;
+      }
+   }else if(start >= 0 && end <= count && c == 'y' && p == '1'){
+      for(int i = start; i <= end; i++){
+          strcpy(records->position, "*");
+      }
+   }else{
+      printf("Invaild input !\n");
+      return;
+   }
+   return;
+}
+
