@@ -358,6 +358,7 @@ void delete_range(Record records[]){
           records->weight = 0;
           records->group_of_year = 0;
           records->uniform_number = 0;
+	  records++;
       }
    }else if(start >= 0 && end <= count && c == 'y' && p == '1'){
       for(int i = start; i <= end; i++){
