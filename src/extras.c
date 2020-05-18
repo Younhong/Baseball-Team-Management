@@ -6,6 +6,58 @@
 int count;
 char selected[1];
 
+void search_multiple_record(Record records[]) {
+  int search_num = 0;
+  char user[20];
+  char position[20];
+  printf("Enter the number of field to search: ");
+  scanf("%d", &search_num);
+
+  if (search_num == 1) {
+    search_record(records);
+  }
+  else if (search_num == 2) {  
+    printf("Choose search option(0: Current Data, 1: File Data): ");
+    scanf("%s", selected);
+
+    // defrag from file
+    if (!strcmp(selected, "1")) {
+      // if file does not exist
+      if (load_record(records) == -1) {
+        return;
+      }
+    }
+    // did not chose either option
+    else if (strcmp(selected, "0")) {
+      printf("Not an option\n");
+      return;
+    }
+
+    // if no record data
+    if (count == 0) {
+      printf("No record to search\n");
+      return;
+    }
+
+    printf("Enter name, position of user: ");
+    scanf("%s %s", user, position);
+
+    for (int i = 0; i < count; i++) {
+      if (!strcmp(records->name, user) && !strcmp(records->position, position)) {
+        display_player_data(records);
+        printf("\n");
+      }
+      records++;
+    }
+  }
+  else {
+    printf("Not yet\n");
+    return;
+  }
+
+  return;
+}
+
 // Function: defragment_empty_record()
 // Input: record - array of Records; this may contain empty elements in the middle
 // Output: none
@@ -141,7 +193,7 @@ void defrag_wrong_record(Record records[]) {
       records[i].age <= 10 || records[i].age >= 50 
       || records[i].weight <= 30 || records[i].weight >= 150 
       || records[i].height <= 120 || records[i].height >= 220  
-      || records[i].group_of_year <= 1990 || records[i].group_of_year >= 2021
+      || records[i].group_of_year <= 2000 || records[i].group_of_year >= 2020
       || records[i].uniform_number <= 0 || records[i].uniform_number >= 100
     ) {
       for (int j = i; j < count; j++) {
@@ -338,36 +390,74 @@ void sort_data(Record records[], char field_select[20], int index) {
 }
 
 void delete_range(Record records[]){
-   int start = 0, end = 0;
+  int start = 0, end = 0;
 
-   printf("Please enter the range to delete (ex 7~10): ");
-   scanf("%d~%d",&start,&end);
+  printf("Choose Option(0: Delete From Current Data, 1: Delete From File): ");
+  scanf("%s", selected);
 
-   char p, c;
-   printf("Enter 0 to delete player's data, 1 to delete player's position: ");
-   scanf(" %c",&p);
-
-   printf("Do you want to delete the contents? (y/n): ");
-   scanf(" %c",&c);
-   if(start >= 0 && end <= count && c == 'y' && p == '0'){
-      for(int i = start; i <= end; i++){
-          strcpy(records->name, "*");
-          strcpy(records->position, "*");
-          records->age = 0;
-          records->height = 0;
-          records->weight = 0;
-          records->group_of_year = 0;
-          records->uniform_number = 0;
-	  records++;
-      }
-   }else if(start >= 0 && end <= count && c == 'y' && p == '1'){
-      for(int i = start; i <= end; i++){
-          strcpy(records->position, "*");
-      }
-   }else{
-      printf("Invaild input !\n");
+  // delete from file
+  if (!strcmp(selected, "1")) {
+    // if file does not exist
+    if (load_record(records) == -1) {
       return;
-   }
-   return;
-}
+    }
+  }
+  // did not chose either option
+  else if (strcmp(selected, "0")) {
+    printf("Not an option\n");
+    return;
+  }
 
+  // if no data
+  if (count == 0) {
+    printf("No record to delete\n");
+    return;
+  }
+
+  printf("Please enter the range to delete (ex 7~10): ");
+  scanf("%d~%d",&start,&end);
+
+  if (start > end || start <= 0 || end > count) {
+    printf("Invaild input!\n");
+    return;
+  }
+
+  int p;
+  char c;
+  printf("Enter 0 to delete player's data, 1 to delete player's position: ");
+  scanf("%d", &p);
+  if (p != 0 && p != 1) {
+    printf("Invaild input!\n");
+    return;
+  }
+
+  printf("Do you want to delete the contents? (y/n): "); 
+  scanf(" %c",&c);
+
+  if (c != 'y' && c != 'n') {
+    printf("Invaild input!\n");
+    return;
+  }
+  else if(start >= 0 && end <= count && c == 'y' && p == 0){
+    for (int i = 0; i < start - 1; i++) {
+      records++;
+    }
+    for(int i = start; i <= end; i++){
+      strcpy(records->name, "*");
+      strcpy(records->position, "*");
+      records->age = 0;
+      records->height = 0;
+      records->weight = 0;
+      records->group_of_year = 0;
+      records->uniform_number = 0;
+      records++;
+    }
+  }
+  else if(start >= 0 && end <= count && c == 'y' && p == 1){
+    for(int i = start; i <= end; i++){
+      strcpy(records->position, "*");
+    }
+  }
+  
+  return;
+}

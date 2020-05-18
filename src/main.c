@@ -13,7 +13,7 @@ void display_menu();
 // main function
 int main(){
   Record records[MAX_RECORDS];
-  char user_input[2] = "";
+  char user_input[3] = "";
   while(strcmp(user_input, "10")){
     display_menu();
     printf("\nSelect Menu> ");
@@ -36,8 +36,12 @@ void input_handler(char user_input[], Record records[]){
     update_record(records);
   else if(!strcmp(user_input, "3"))
     delete_record(records);
+  else if(!strcmp(user_input, "3-2"))
+    delete_range(records);
   else if(!strcmp(user_input, "4"))
     search_record(records);
+  else if (!strcmp(user_input, "4-2"))
+    search_multiple_record(records);
   else if(!strcmp(user_input, "5"))
     sort_record(records);
   else if(!strcmp(user_input, "6"))
@@ -49,8 +53,6 @@ void input_handler(char user_input[], Record records[]){
   else if(!strcmp(user_input, "9"))
     save_record(records);
   else if(!strcmp(user_input, "10"))
-    delete_range(records);
-  else if(!strcmp(user_input, "11"))
     printf("Terminating... bye!\n"); // Quit
   else
     printf("Unknown menu: %s \n", user_input);
@@ -66,12 +68,13 @@ void display_menu(){
     printf("1. Add New Member\n");
     printf("2. Update Member\n");
     printf("3. Delete Member\n");
+    printf("3-2. Delete users in the scope\n");
     printf("4. Search Member\n");
+    printf("4-2. Search Option\n");
     printf("5. Sort Member\n");
     printf("6. Defrag Record\n");
     printf("7. Show Member\n");
     printf("8. Load Member\n");
     printf("9. Save Member\n");
-    printf("10. Delete users in the scope\n");
-    printf("11. Quit\n");
+    printf("10. Quit\n");
 }
