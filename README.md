@@ -1,4 +1,4 @@
-CRUD Management System for Basketball Team
+CRUD Management System for Baseball Team
 ==========================================
 
 # Program Descriptions
