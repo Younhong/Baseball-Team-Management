@@ -2,7 +2,7 @@ CRUD Management System for Basketball Team
 ==========================================
 
 # Program Descriptions
-> This program is to manage basketball team member's information.   
+> This program is to manage baseball team member's information.   
 > Information here is not about score or play record.   
 > It is just about basic information as age, uniform number, position, weight, height, and etc.
 
