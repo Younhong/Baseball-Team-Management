@@ -8,24 +8,24 @@ CRUD Management System for Baseball Team
 
 # Functions
 1. Create
->> Create data record by **keyborard input** or **file input**.
+> Create data record by **keyborard input** or **file input**.
 2. Read
->> Read record from **report file(txt)** or **data file(csv)**.
+> Read record from **report file(txt)** or **data file(csv)**.
 3. Update
->> You can choose to update every data that matches condition.
+> You can choose to update every data that matches condition.
 4. Delete
->> You can choose to delete every data that matches condition.
+> You can choose to delete every data that matches condition.
 5. Search
->> You can search for specific name or position.
+> You can search for specific name or position.
 6. Sort
->> You can sort record by numeric fields in descending order or ascending order.
+> You can sort record by numeric fields in descending order or ascending order.
 7. Display
->> You can display all the data from record.
+> You can display all the data from record.
 8. Save
->> You can save record in **data format(csv)** or **report format(txt)**.
+> You can save record in **data format(csv)** or **report format(txt)**.
 9. Defrag Empty Record
->> If there are **empty data** in name or position of record, you can move it to the end of record.   
->> Ex) Position: *
+> If there are **empty data** in name or position of record, you can move it to the end of record.   
+> Ex) Position: *
 10. Defrag Wrong Record
->> Similar to previous one, but it is to sort every data that is **out of range** to the end of record.   
->> Ex) Age cannot be negative.
+> Similar to previous one, but it is to sort every data that is **out of range** to the end of record.   
+> Ex) Age cannot be negative.
